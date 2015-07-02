@@ -27,6 +27,8 @@
             "iso_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
             "iso_checksum_type": "md5",
             "ssh_username": "rails",
+            "ssh_password": "rails",
+            "ssh_password": "rails",
             "ssh_port": 22,
             "ssh_wait_timeout": "1000s",
             "shutdown_command": "sudo -S shutdown -P now",
@@ -49,6 +51,7 @@
             "iso_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
             "iso_checksum_type": "md5",
             "ssh_username": "rails",
+            "ssh_password": "rails",
             "ssh_port": 22,
             "ssh_wait_timeout": "1000s",
             "shutdown_command": "sudo -S shutdown -P now",
@@ -87,7 +90,8 @@
                 "scripts/vagrant.sh",
                 "scripts/cleanup.sh",
                 "scripts/zerodisk.sh"
-            ]
+            ],
+            "execute_command": "sudo -S bash '{{.Path}}'"
         },
         {
             "type": "shell",
