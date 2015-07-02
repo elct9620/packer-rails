@@ -4,10 +4,13 @@
         "vcs": true
     },
     "variables": {
+        "atlas_username": "{{env `ATLAS_USERNAME`}}",
+        "atlas_name": "{{env `ATLAS_NAME`}}",
         "rvm_version": "stable",
         "ruby_version": "2.2.2",
         "gems": "bundler rails",
-        "hostname": "rails.dev"
+        "hostname": "rails.dev",
+        "box_version": "0.0.1"
     },
     "builders": [
         {
@@ -56,29 +59,6 @@
             "ssh_wait_timeout": "1000s",
             "shutdown_command": "sudo -S shutdown -P now",
             "headless": true
-        },
-        {
-            "type": "parallels-iso",
-            "boot_command": [
-                "<esc><esc><enter><wait>",
-                "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
-                "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-                "hostname={{user `hostname`}} ",
-                "fb=false debconf/frontend=noninteractive ",
-                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
-                "initrd=/install/initrd.gz -- <enter>"
-            ],
-            "http_directory": "http",
-            "guest_os_type": "ubuntu",
-            "iso_url": "http://releases.ubuntu.com/14.04.2/ubuntu-14.04.2-server-amd64.iso",
-            "iso_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
-            "iso_checksum_type": "md5",
-            "ssh_username": "rails",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "1000s",
-            "shutdown_command": "sudo -S shutdown -P now",
-            "parallels_tools_flavor": "lin"
-
         }
     ],
     "provisioners": [
@@ -113,6 +93,26 @@
         {
             "type": "vagrant",
             "keep_input_artifact": false
+        },
+        {
+            "type": "atlas",
+            "only": ["vmware-iso"],
+            "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+            "artifact_type": "vagrant.box",
+            "metadata": {
+                "provider": "vmware_desktop",
+                "version": "{{user `box_version`}}"
+            }
+        },
+        {
+            "type": "atlas",
+            "only": ["virtualbox-iso"],
+            "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+            "artifact_type": "vagrant.box",
+            "metadata": {
+                "provider": "virtualbox",
+                "version": "{{user `box_version`}}"
+            }
         }
     ]
 }
