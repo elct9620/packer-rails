@@ -13,11 +13,11 @@
             "type": "virtualbox-iso",
             "boot_command": [
                 "<esc><esc><enter><wait>",
-                "/install/vmlinuz npapic pressed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/pressed.cfg",
-                "debian-installer=zh_TW auto locale=zh_TW kdb-chooser/method=us",
-                "hostname={{ .Name }}",
-                "fb/false debconf/frontend=nointeractive",
-                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false",
+                "/install/vmlinuz npapic pressed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+                "debian-installer=en_US auto locale=en_US kdb-chooser/method=us ",
+                "hostname={{ .Name }} ",
+                "fb/false debconf/frontend=nointeractive ",
+                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
                 "initrd=/install/initrd.gz -- <enter>"
             ],
             "http_directory": "http",
@@ -29,17 +29,17 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "1000s",
             "shutdown_command": "sudo -S shutdown -P now",
-            "headless": true
+            "headless": false
         },
         {
             "type": "vmware-iso",
             "boot_command": [
-                "<esc><esc><enter><wait>",
-                "/install/vmlinuz npapic pressed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/pressed.cfg",
-                "debian-installer=zh_TW auto locale=zh_TW kdb-chooser/method=us",
-                "hostname={{ .Name }}",
-                "fb/false debconf/frontend=nointeractive",
-                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false",
+                "<esc><esc><enter><wait> ",
+                "/install/vmlinuz npapic pressed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+                "debian-installer=en_US auto locale=en_US kdb-chooser/method=us ",
+                "hostname={{ .Name }} ",
+                "fb/false debconf/frontend=nointeractive ",
+                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
                 "initrd=/install/initrd.gz -- <enter>"
             ],
             "guest_os_type": "Ubuntu-64",
@@ -57,11 +57,11 @@
             "type": "parallels-iso",
             "boot_command": [
                 "<esc><esc><enter><wait>",
-                "/install/vmlinuz npapic pressed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/pressed.cfg",
-                "debian-installer=zh_TW auto locale=zh_TW kdb-chooser/method=us",
-                "hostname={{ .Name }}",
-                "fb/false debconf/frontend=nointeractive",
-                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false",
+                "/install/vmlinuz npapic pressed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+                "debian-installer=en_US auto locale=en_US kdb-chooser/method=us ",
+                "hostname={{ .Name }} ",
+                "fb/false debconf/frontend=nointeractive ",
+                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
                 "initrd=/install/initrd.gz -- <enter>"
             ],
             "http_directory": "http",
