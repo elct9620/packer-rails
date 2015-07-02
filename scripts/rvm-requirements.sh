@@ -11,12 +11,4 @@ else
   printf "ERROR: An RVM installation was not found.\n"
 fi
 
-# Install specify ruby version
-rvm use --install $1
-
-shift
-
-# Install necessary gems
-if (( $# ))
-then gem install $@
-fi
+rvm requirements

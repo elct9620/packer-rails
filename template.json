@@ -100,6 +100,11 @@
         },
         {
             "type": "shell",
+            "script": "scripts/rvm-requirements.sh",
+            "execute_command": "sudo -S bash '{{.Path}}'"
+        },
+        {
+            "type": "shell",
             "script": "scripts/install-ruby.sh",
             "execute_command": "{{ .Vars }} {{ .Path }} {{user `ruby_version`}} {{user `gems`}}"
         }
