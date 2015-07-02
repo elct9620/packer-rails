@@ -1,0 +1,72 @@
+{
+    "push": {
+        "name": "elct9620/rails",
+        "vcs": true
+    },
+    "variables": {
+        "rvm_version": "stable",
+        "ruby_version": "2.2.2",
+        "gems": "bundler rails"
+    },
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "guest_os_type": "Ubuntu_64",
+            "iso_url": "http://releases.ubuntu.com/14.04.2/ubuntu-14.04.2-server-amd64.iso",
+            "iso_checksum": "91bd1cfba65417bfa04567e4f64b5c55",
+            "iso_checksum_type": "md5",
+            "ssh_username": "rails",
+            "ssh_wait_timeout": "30s",
+            "shutdown_command": "sudo -S shutdown -P now"
+        },
+        {
+            "type": "vmware-iso",
+            "iso_url": "http://releases.ubuntu.com/14.04.2/ubuntu-14.04.2-server-amd64.iso",
+            "iso_checksum": "91bd1cfba65417bfa04567e4f64b5c55",
+            "iso_checksum_type": "md5",
+            "ssh_username": "rails",
+            "ssh_wait_timeout": "30s",
+            "shutdown_command": "sudo -S shutdown -P now"
+        },
+        {
+            "type": "parallels-iso",
+            "guest_os_type": "ubuntu",
+            "iso_url": "http://releases.ubuntu.com/14.04.2/ubuntu-14.04.2-server-amd64.iso",
+            "iso_checksum": "91bd1cfba65417bfa04567e4f64b5c55",
+            "iso_checksum_type": "md5",
+            "ssh_username": "rails",
+            "ssh_wait_timeout": "30s",
+            "shutdown_command": "sudo -S shutdown -P now",
+            "parallels_tools_flavor": "lin"
+
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/base.sh",
+                "scripts/vm-setup.sh",
+                "scripts/vagrant.sh",
+                "scripts/cleanup.sh",
+                "scripts/zerodisk.sh"
+            ]
+        },
+        {
+            "type": "shell",
+            "script": "scripts/install-rvm.sh",
+            "execute_command": "{{ .Vars }} {{ .Path }} {{user `rvm_version`}}"
+        },
+        {
+            "type": "shell",
+            "script": "scripts/install-ruby.sh",
+            "execute_command": "{{ .Vars }} {{ .Path }} {{user `ruby_version`}} {{user `gems`}}"
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "keep_input_artifact": false
+        }
+    ]
+}
