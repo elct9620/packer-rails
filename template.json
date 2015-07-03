@@ -10,7 +10,7 @@
         "ruby_version": "2.2.1",
         "gems": "bundler rails",
         "hostname": "rails.dev",
-        "box_version": "0.0.2"
+        "box_version": "0.0.3"
     },
     "builders": [
         {
