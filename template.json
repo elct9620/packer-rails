@@ -7,7 +7,7 @@
         "atlas_username": "{{env `ATLAS_USERNAME`}}",
         "atlas_name": "{{env `ATLAS_NAME`}}",
         "rvm_version": "stable",
-        "ruby_version": "2.2.2",
+        "ruby_version": "2.2.1",
         "gems": "bundler rails",
         "hostname": "rails.dev",
         "box_version": "0.0.2"
