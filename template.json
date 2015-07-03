@@ -90,29 +90,31 @@
         }
     ],
     "post-processors": [
-        {
-            "type": "vagrant",
-            "keep_input_artifact": false
-        },
-        {
-            "type": "atlas",
-            "only": ["vmware-iso"],
-            "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
-            "artifact_type": "vagrant.box",
-            "metadata": {
-                "provider": "vmware_desktop",
-                "version": "{{user `box_version`}}"
+        [
+            {
+                "type": "vagrant",
+                "keep_input_artifact": false
+            },
+            {
+                "type": "atlas",
+                "only": ["vmware-iso"],
+                "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "vmware_desktop",
+                    "version": "{{user `box_version`}}"
+                }
+            },
+            {
+                "type": "atlas",
+                "only": ["virtualbox-iso"],
+                "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+                "artifact_type": "vagrant.box",
+                "metadata": {
+                    "provider": "virtualbox",
+                    "version": "{{user `box_version`}}"
+                }
             }
-        },
-        {
-            "type": "atlas",
-            "only": ["virtualbox-iso"],
-            "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
-            "artifact_type": "vagrant.box",
-            "metadata": {
-                "provider": "virtualbox",
-                "version": "{{user `box_version`}}"
-            }
-        }
+        ]
     ]
 }
