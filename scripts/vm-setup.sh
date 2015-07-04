@@ -13,7 +13,7 @@ fi
 
 # Setup VMWare
 if [[ `facter virtual` == "vmware" ]]; then
-  mkfir -p /mnt/vmware
+  mkdir -p /mnt/vmware
   mount -o loop /home/vagrant/linux.iso /mnt/vmware
 
   cd /tmp

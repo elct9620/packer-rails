@@ -10,7 +10,7 @@
         "ruby_version": "2.2.1",
         "gems": "bundler rails",
         "hostname": "rails.dev",
-        "box_version": "0.0.5"
+        "box_version": "0.0.8"
     },
     "builders": [
         {
@@ -26,6 +26,7 @@
             ],
             "http_directory": "http",
             "guest_os_type": "Ubuntu_64",
+            "disk_size": 204800,
             "iso_url": "http://releases.ubuntu.com/14.04.2/ubuntu-14.04.2-server-amd64.iso",
             "iso_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
             "iso_checksum_type": "md5",
@@ -47,8 +48,9 @@
                 "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
                 "initrd=/install/initrd.gz -- <enter>"
             ],
-            "guest_os_type": "Ubuntu-64",
             "http_directory": "http",
+            "guest_os_type": "Ubuntu-64",
+            "disk_size": 204800,
             "iso_url": "http://releases.ubuntu.com/14.04.2/ubuntu-14.04.2-server-amd64.iso",
             "iso_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
             "iso_checksum_type": "md5",
@@ -57,7 +59,8 @@
             "ssh_port": 22,
             "ssh_wait_timeout": "1000s",
             "shutdown_command": "sudo -S shutdown -P now",
-            "headless": true
+            "headless": true,
+            "tools_upload_flavor": "linux"
         }
     ],
     "provisioners": [
