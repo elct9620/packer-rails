@@ -12,7 +12,7 @@ else
 fi
 
 # Install specify ruby version
-rvm use --install $1
+rvm use --install --default $1
 
 shift
 
